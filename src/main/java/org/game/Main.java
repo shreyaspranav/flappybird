@@ -1,11 +1,14 @@
 package org.game;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
+import org.game.application.ApplicationProperties;
+import org.game.application.ApplicationRunner;
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
+public class Main {
+    private static final int WIDTH = 1600, HEIGHT = 900;
+    private static final String TITLE = "FlappyBird Game";
+
+    public static void main(String[] args) {
+        ApplicationRunner app = new ApplicationRunner(new ApplicationProperties(WIDTH, HEIGHT, TITLE));
+        app.run();
     }
 }
