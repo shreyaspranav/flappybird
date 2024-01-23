@@ -12,7 +12,7 @@ public class RenderCommand {
         buffer.bind();
         glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, start);
 
-        System.out.println(glGetError());
+        //System.out.println(glGetError());
     }
     public static void DrawNonIndexed(VertexBuffer buffer, int start, int count) {
         buffer.bind();

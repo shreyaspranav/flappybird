@@ -9,11 +9,11 @@ layout(location = 1) out vec4 color;
 layout(location = 2) out vec2 textureCoords;
 layout(location = 3) flat out float texSlot;
 
-// uniform mat4 uViewProjection;
+uniform mat4 uViewProjectionMatrix;
 
 void main()
 {
-    gl_Position      = vec4(aPosition, 1.0);
+    gl_Position      = uViewProjectionMatrix * vec4(aPosition, 1.0);
     color            = aColor;
     textureCoords    = aTextureCoords;
     texSlot          = aTexSlot;

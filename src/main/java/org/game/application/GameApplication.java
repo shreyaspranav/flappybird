@@ -1,6 +1,7 @@
 package org.game.application;
 
 import org.game.engine.*;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 
@@ -8,6 +9,8 @@ public class GameApplication implements Application {
 
     private ApplicationProperties properties;
     private Window window;
+
+    private Camera2D camera;
 
     public GameApplication(ApplicationProperties properties) { this.properties = properties; }
 
@@ -25,7 +28,6 @@ public class GameApplication implements Application {
                 -0.5f,  0.5f, 0.0f,       0.0f, 1.0f, 0.0f, 1.0f,         0.0f, 1.0f,         0.0f,
                 -0.5f, -0.5f, 0.0f,       1.0f, 0.0f, 1.0f, 1.0f,         0.0f, 0.0f,         0.0f,
                  0.5f, -0.5f, 0.0f,       1.0f, 0.0f, 1.0f, 1.0f,         1.0f, 0.0f,         0.0f,
-
         };
 
         int[] indices = { 0, 1, 2, 0, 2, 3 };
@@ -46,13 +48,19 @@ public class GameApplication implements Application {
 
         shader = new ShaderProgram("shaders/vertexShader.glsl", "shaders/fragmentShader.glsl");
         shader.loadShader();
+
+        camera = new Camera2D(new Vector3f(0.0f, 0.0f, 0.0f), 1600, 900);
     }
 
     @Override
     public void onUpdate(double timestep) {
         RenderCommand.ClearScreen(0.1f, 0.1f, 0.1f, 1.0f);
 
+        camera.setPosition(camera.getPosition().add(new Vector3f(0.000001f * (float)timestep, 0.0f, 0.0f)));
+        camera.update();
+
         shader.bind();
+        shader.uniformMat4("uViewProjectionMatrix", camera.getViewProjectionMat());
         RenderCommand.DrawIndexed(buffer, 0, 6);
 
         window.updateWindow();

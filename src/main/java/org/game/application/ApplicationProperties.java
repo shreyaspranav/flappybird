@@ -12,7 +12,7 @@ public class ApplicationProperties {
         this.title = title;
 
         fullscreen = false;
-        vsync = true;
+        vsync = false;
     }
     public ApplicationProperties(int width, int height, String title, boolean fullscreen, boolean vsync) {
         this.width = width;
