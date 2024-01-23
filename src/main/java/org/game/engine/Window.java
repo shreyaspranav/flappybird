@@ -4,14 +4,12 @@ import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import org.game.application.ApplicationProperties;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
@@ -56,10 +54,6 @@ public class Window {
     }
 
     public void updateWindow() {
-
-        glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
-
         glfwSwapBuffers(windowHandle);
         glfwPollEvents();
     }
