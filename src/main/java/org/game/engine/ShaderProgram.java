@@ -106,6 +106,9 @@ public class ShaderProgram {
     public void uniformMat4(String uniformName, Matrix4f mat) {
         int loc = glGetUniformLocation(shaderProgramID, uniformName);
 
+        if(loc == -1)
+            throw new RuntimeException("Uniform variable: '" + uniformName + "' not found");
+
         try (MemoryStack stack = MemoryStack.stackPush()) {
             FloatBuffer matrix = mat.get(stack.mallocFloat(16));
             glUniformMatrix4fv(loc, false, matrix);
