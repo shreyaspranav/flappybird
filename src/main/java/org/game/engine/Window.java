@@ -65,5 +65,9 @@ public class Window {
         glfwTerminate();
     }
 
+    public ApplicationProperties getProperties() { return properties; }
+
+    public long getWindowHandle() { return windowHandle; }
+
     public boolean isWindowClosing() { return glfwWindowShouldClose(windowHandle); }
 }

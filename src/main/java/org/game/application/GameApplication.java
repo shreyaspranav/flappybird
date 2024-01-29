@@ -23,7 +23,7 @@ public class GameApplication implements Application {
         window.createWindow();
 
         gameLogic = new FlappyBirdLogic();
-        gameLogic.start();
+        gameLogic.start(window);
 
         Renderer2D.init();
     }
