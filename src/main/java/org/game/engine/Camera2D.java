@@ -9,6 +9,8 @@ public class Camera2D {
     private float rotation;
     private Vector2f scale;
     private Matrix4f projection, view, viewProjection;
+    private float aspectRatio;
+
 
     public Camera2D(Vector3f initialPosition, int width, int height) {
         position = initialPosition;
@@ -21,6 +23,8 @@ public class Camera2D {
         float aspectRatio = (float)width / (float)height;
         projection.setOrtho2D(-aspectRatio, aspectRatio, -1.0f, 1.0f);
 
+        this.aspectRatio = aspectRatio;
+
         view.translate(position.mul(-1.0f, position));
         view.rotate(-rotation, new Vector3f(0.0f, 0.0f, 1.0f));
         view.scale(scale.x, scale.y, 1.0f);
@@ -29,11 +33,11 @@ public class Camera2D {
     }
 
     public void update() {
-        view.translate(position.mul(-1.0f, position));
-        view.rotate(-rotation, new Vector3f(0.0f, 0.0f, 1.0f));
-        view.scale(scale.x, scale.y, 1.0f);
+        view.identity().scale(scale.x, scale.y, 1.0f)
+                .rotateZ((float)Math.toRadians(rotation))
+                .translate(new Vector3f(position.x, position.y, position.z));
 
-        viewProjection = projection.mul(view);
+        viewProjection.setOrtho2D(-aspectRatio, aspectRatio, -1.0f, 1.0f).mul(view);
     }
 
     public void setPosition(Vector3f position) {
