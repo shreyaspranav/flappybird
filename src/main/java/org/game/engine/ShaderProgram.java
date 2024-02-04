@@ -114,4 +114,12 @@ public class ShaderProgram {
             glUniformMatrix4fv(loc, false, matrix);
         }
     }
+
+    public void uniformIntArray(String uniformName, int[] arr) {
+        int loc = glGetUniformLocation(shaderProgramID, uniformName);
+
+        if(loc == -1)
+            throw new RuntimeException("Uniform variable: '" + uniformName + "' not found");
+        glUniform1iv(loc, arr);
+    }
 }

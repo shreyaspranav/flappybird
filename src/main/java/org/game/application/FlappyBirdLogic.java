@@ -11,6 +11,8 @@ public class FlappyBirdLogic {
     private Vector3f cameraPosition;
     private Vector3f playerPosition;
 
+    private Texture cher;
+
     float a = 0.0f;
 
     public void start(Window window) {
@@ -18,6 +20,8 @@ public class FlappyBirdLogic {
         sceneCamera = new Camera2D(cameraPosition, window.getProperties().getWindowWidth(), window.getProperties().getWindowHeight());
 
         playerPosition = new Vector3f(0.0f, 0.01f, 0.0f);
+
+        cher = new Texture("textures/bluebird-midflap.png");
 
         Renderer2D.init();
         Input.setWindow(window);
@@ -41,12 +45,11 @@ public class FlappyBirdLogic {
             a = 0.0f;
         }
 
-
-        Renderer2D.drawClearQuad(
+        Renderer2D.drawTexturedQuad(
                 playerPosition,
                 0.0f,
                 new Vector2f(0.1f, 0.1f),
-                new Vector4f(1.0f, 0.0f, 0.0f,1.0f)
+                cher
         );
     }
 }

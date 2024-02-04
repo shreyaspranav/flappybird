@@ -6,8 +6,11 @@ layout(location = 3) flat in float texSlot;
 
 layout(location = 0) out vec4 outColor;
 
+uniform sampler2D uTextures[32];
+
 void main()
 {
-    outColor = color;
+    int t_slot = int(texSlot);
+    outColor = texture(uTextures[t_slot], textureCoords) * color;
 }
 
