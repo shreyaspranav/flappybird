@@ -48,7 +48,7 @@ public class Window {
             );
         }
 
-        glfwSwapInterval(0);
+        glfwSwapInterval(properties.isVsync() ? 1 : 0);
         glfwShowWindow(windowHandle);
 
         // Create OpenGL Context

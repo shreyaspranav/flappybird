@@ -90,8 +90,8 @@ public class FlappyBirdLogic {
     private void updateGame(double timestep) {
 
         if(!gameOver) {
-            cameraPosition.x += timestep * 0.001f;
-            playerPosition.x = cameraPosition.x - 1.2f;
+            //cameraPosition.x += timestep * 0.001f;
+            //playerPosition.x = cameraPosition.x - 1.2f;
         }
 
         sceneCamera.setPosition(cameraPosition);
@@ -100,8 +100,8 @@ public class FlappyBirdLogic {
         if(d > 4.0f)
             currentBirdTexture = birdUpFlap;
 
-        playerPosition.y -= d * timestep * 0.0001f;
-        d += GRAVITY * timestep * 0.0001f * 7.0f;
+        //playerPosition.y -= d * timestep * 0.0001f;
+        //d += GRAVITY * timestep * 0.0001f * 7.0f;
 
 //        System.out.println(playerPosition.y);
 
