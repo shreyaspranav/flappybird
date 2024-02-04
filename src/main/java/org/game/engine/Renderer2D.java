@@ -83,7 +83,7 @@ public class Renderer2D {
         quadVerts = new float[MAX_QUADS_PER_DRAW_CALL * VERTICES_PER_QUAD * FLOATS_PER_VERTEX];
         quadIndices = new int[MAX_QUADS_PER_DRAW_CALL * INDICES_PER_QUAD];
 
-        whiteTexture = new Texture("textures/white-pixel.png");
+        whiteTexture = new Texture("textures/white-pixel.png", true);
 
         textures = new Texture[MAX_TEXTURE_SLOTS];
         texSlots = new int[MAX_TEXTURE_SLOTS];
@@ -113,10 +113,17 @@ public class Renderer2D {
         addQuad(position, rotation, scale);
         addDefaultTextureCoordinates();
         addColor(new Vector4f(1.0f, 1.0f, 1.0f, 1.0f));
+
+        for(int i = 0; i < textureSlotIndex; i++) {
+            if(texture.equals(textures[i])) {
+                addTextureSlot(i);
+                quadIndex++;
+                return;
+            }
+        }
+
         addTextureSlot(textureSlotIndex);
-
         textures[textureSlotIndex++] = texture;
-
         quadIndex++;
     }
 
@@ -203,8 +210,6 @@ public class Renderer2D {
             texSlots[i] = i;
             textures[i].bind(i);
         }
-//        texSlots[1] = 1;
-//        textures[0].bind(1);
         mainShader.uniformIntArray(TEXTURES_UNIFORM_NAME, texSlots);
 
         // Render out the entire Vertex Buffer:

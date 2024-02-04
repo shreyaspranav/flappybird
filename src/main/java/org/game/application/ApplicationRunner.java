@@ -13,11 +13,9 @@ public class ApplicationRunner {
 
         double ts = 0.0f;
         while (app.isApplicationRunning()) {
+
             Instant start = Instant.now();
-
             app.onUpdate(ts);
-            System.out.println(ts);
-
             Instant end = Instant.now();
 
             ts = (double) Duration.between(start, end).toNanos() / 1000000.0;

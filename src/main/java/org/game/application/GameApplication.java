@@ -18,27 +18,21 @@ public class GameApplication implements Application {
 
     @Override
     public void onStart() {
-        //System.out.println("Start!");
         window = new Window(properties);
         window.createWindow();
 
         gameLogic = new FlappyBirdLogic();
         gameLogic.start(window);
-
-        Renderer2D.init();
     }
 
     @Override
     public void onUpdate(double timestep) {
-
         gameLogic.update(timestep);
-
         window.updateWindow();
     }
 
     @Override
     public void onExit() {
-        System.out.println("Exit");
         window.destroyWindow();
     }
     @Override

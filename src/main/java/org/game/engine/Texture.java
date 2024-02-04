@@ -12,7 +12,7 @@ public class Texture {
     private int textureHandle;
     private final int textureWidth, textureHeight;
 
-    public Texture(String path) {
+    public Texture(String path, boolean usePointFiltering) {
         try {
             PNGDecoder decoder = new PNGDecoder(Texture.class.getClassLoader().getResourceAsStream(path));
 
@@ -31,8 +31,8 @@ public class Texture {
 
             glTextureParameteri(textureHandle, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTextureParameteri(textureHandle, GL_TEXTURE_WRAP_T, GL_REPEAT);
-            glTextureParameteri(textureHandle, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTextureParameteri(textureHandle, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTextureParameteri(textureHandle, GL_TEXTURE_MIN_FILTER, usePointFiltering ? GL_NEAREST : GL_LINEAR);
+            glTextureParameteri(textureHandle, GL_TEXTURE_MAG_FILTER, usePointFiltering ? GL_NEAREST : GL_LINEAR);
 
             glTextureSubImage2D(textureHandle, 0, 0, 0, textureWidth, textureHeight, GL_RGBA, GL_UNSIGNED_BYTE, buf);
         } catch (IOException e) {
@@ -54,8 +54,8 @@ public class Texture {
 
         glTextureParameteri(textureHandle, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTextureParameteri(textureHandle, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTextureParameteri(textureHandle, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTextureParameteri(textureHandle, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTextureParameteri(textureHandle, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTextureParameteri(textureHandle, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
         glTextureSubImage2D(textureHandle, 0, 0, 0, textureWidth, textureHeight, GL_RGBA, GL_UNSIGNED_BYTE, ByteBuffer.wrap(pixelData).flip());
     }

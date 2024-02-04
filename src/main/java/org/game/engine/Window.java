@@ -9,6 +9,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 import org.game.application.ApplicationProperties;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
 
@@ -22,6 +23,8 @@ public class Window {
     public void createWindow() {
         if(!GLFW.glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
+
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
         windowHandle = GLFW.glfwCreateWindow(properties.getWindowWidth(),
                 properties.getWindowHeight(),
@@ -45,7 +48,7 @@ public class Window {
             );
         }
 
-        glfwSwapInterval(properties.isVsync() ? 1 : 0);
+        glfwSwapInterval(0);
         glfwShowWindow(windowHandle);
 
         // Create OpenGL Context

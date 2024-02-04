@@ -8,7 +8,7 @@ public class Main {
     private static final String TITLE = "FlappyBird Game";
 
     public static void main(String[] args) {
-        ApplicationRunner app = new ApplicationRunner(new ApplicationProperties(WIDTH, HEIGHT, TITLE));
+        ApplicationRunner app = new ApplicationRunner(new ApplicationProperties(WIDTH, HEIGHT, TITLE, false, false));
         app.run();
     }
 }

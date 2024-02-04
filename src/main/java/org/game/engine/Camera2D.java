@@ -35,7 +35,7 @@ public class Camera2D {
     public void update() {
         view.identity().scale(scale.x, scale.y, 1.0f)
                 .rotateZ((float)Math.toRadians(rotation))
-                .translate(new Vector3f(position.x, position.y, position.z));
+                .translate(new Vector3f(-position.x, -position.y, -position.z));
 
         viewProjection.setOrtho2D(-aspectRatio, aspectRatio, -1.0f, 1.0f).mul(view);
     }
