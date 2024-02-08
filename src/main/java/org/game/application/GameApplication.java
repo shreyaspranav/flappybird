@@ -1,11 +1,6 @@
 package org.game.application;
 
 import org.game.engine.*;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
-
-import java.util.ArrayList;
 
 public class GameApplication implements Application {
 
